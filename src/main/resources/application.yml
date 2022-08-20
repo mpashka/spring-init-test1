@@ -1,8 +1,6 @@
 spring:
   profiles:
     active: show-error
-#    active: expected-init
-myBeanFactoryNull: true
 logging.level:
   root: INFO
   org.mpashka: TRACE

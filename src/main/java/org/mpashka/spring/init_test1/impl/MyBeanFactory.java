@@ -1,48 +1,35 @@
 package org.mpashka.spring.init_test1.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
-public class MyBeanFactory implements FactoryBean<MyBean>, ApplicationContextAware {
-    private static final Logger log = LoggerFactory.getLogger(MyBeanFactory.class);
-
+public class MyBeanFactory implements FactoryBean<MyBeanFactory.MyBean> {
     private boolean myBeanFactoryNull;
 
-//    @Autowired
-    private MyProps myProps;
+    private MyBeanProcessedChecker myBeanProcessedChecker;
 
     public MyBeanFactory(boolean myBeanFactoryNull) {
         this.myBeanFactoryNull = myBeanFactoryNull;
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        log.info("App ctx: {}", applicationContext);
-    }
-
-    @Override
     public MyBean getObject() {
-        MyBean myBean = new MyBean(myProps);
-        log.info("Get bean by factory: {}-{}", myProps, myBean);
-        return myBean;
+        return new MyBean(myBeanProcessedChecker);
     }
 
     @Override
     public Class<MyBean> getObjectType() {
-        log.info("Get bean object type for {}:{}", myProps, myBeanFactoryNull);
-//        return MyBean.class;
-        return myProps == null && myBeanFactoryNull ? null : MyBean.class;
-//        return null;
+        return myBeanProcessedChecker == null && myBeanFactoryNull ? null : MyBean.class;
     }
 
-    public void setMyProps(MyProps myProps) {
-        log.info("Set {}", myProps);
-        this.myProps = myProps;
+    public void setMyBeanProcessedChecker(MyBeanProcessedChecker myBeanProcessedChecker) {
+        this.myBeanProcessedChecker = myBeanProcessedChecker;
+    }
+
+    public static class MyBean {
+        private MyBeanProcessedChecker myBeanProcessedChecker;
+
+        public MyBean(MyBeanProcessedChecker myBeanProcessedChecker) {
+            this.myBeanProcessedChecker = myBeanProcessedChecker;
+        }
     }
 }

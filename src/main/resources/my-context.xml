@@ -8,27 +8,20 @@
     <beans profile="show-error">
         <bean id="myBeanFactory" class="org.mpashka.spring.init_test1.impl.MyBeanFactory">
             <constructor-arg name="myBeanFactoryNull" value="true"/>
-            <property name="myProps" value="#{@myProps}"/>
-            <!--        <property name="myProps" value="${my.config}"/>-->
             <!--
-                    <property name="myProps">
-                        <bean class="org.mpashka.spring.init_test1.impl.MyProps"/>
-                    </property>
+            This causes bean initialization in wrong order (without
+            proper PostProcessing) if beanFactory.findAnnotationOnBean() is called by any
+            BeanFactoryPostProcessor.
+            In our case this is DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor
             -->
+            <property name="myBeanProcessedChecker" value="#{@myBeanProcessedChecker}"/>
         </bean>
     </beans>
 
     <beans profile="expected-init">
         <bean id="myBeanFactory" class="org.mpashka.spring.init_test1.impl.MyBeanFactory">
             <constructor-arg name="myBeanFactoryNull" value="false"/>
-            <property name="myProps" value="#{@myProps}"/>
-            <!--        <property name="myProps" value="${my.config}"/>-->
-            <!--
-                    <property name="myProps">
-                        <bean class="org.mpashka.spring.init_test1.impl.MyProps"/>
-                    </property>
-            -->
+            <property name="myBeanProcessedChecker" value="#{@myBeanProcessedChecker}"/>
         </bean>
     </beans>
-
 </beans>
