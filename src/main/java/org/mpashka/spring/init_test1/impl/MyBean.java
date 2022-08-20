@@ -13,15 +13,12 @@ public class MyBean {
 
     public MyBean(MyProps myProps) {
         this.myProps = myProps;
-        log.info("My bean create with props: {}", myProps.getMyVal());
+        log.info("My bean create with props: {}", myProps);
     }
 
     @PostConstruct
     public void init() {
-        log.info("My bean init with props: {}", myProps.getMyVal());
+        log.info("My bean init with props: {}", myProps);
     }
 
-    public String myVal() {
-        return myProps.getMyVal();
-    }
 }

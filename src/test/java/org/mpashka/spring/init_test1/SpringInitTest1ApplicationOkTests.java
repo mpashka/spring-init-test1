@@ -4,9 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
-@SpringBootTest
-@TestPropertySource(locations="classpath:application-test-ok.yaml")
-class SpringInitTest1ApplicationOkTests {
+@SpringBootTest(properties = { "myBeanFactoryNull=false" })
+public class SpringInitTest1ApplicationOkTests {
 
 	@Test
 	void contextLoads() {

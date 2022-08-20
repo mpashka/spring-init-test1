@@ -22,7 +22,7 @@ public class MyBeanFactory2 implements FactoryBean, ApplicationContextAware {
 
     @Override
     public Object getObject() {
-        log.info("Get bean by factory: {}-{}", myProps, myProps == null ? null : myProps.getMyVal());
+        log.info("Get bean by factory: {}-{}", myProps, myProps == null ? null : myProps.isPostProcessed());
         return new MyBean(myProps);
     }
 

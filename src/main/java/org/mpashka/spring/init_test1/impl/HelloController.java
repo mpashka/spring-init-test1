@@ -22,12 +22,12 @@ public class HelloController implements ApplicationContextAware {
     @Autowired
     private MyProps myProps;
 
-//    @Autowired
-//    @Qualifier("&myBeanFactory")
+    @Autowired
+    @Qualifier("&myBeanFactory")
     private MyBeanFactory myBeanFactory;
 
-//    @Autowired
-//    @Qualifier("myBeanFactory")
+    @Autowired
+    @Qualifier("myBeanFactory")
     private MyBean myBean;
 
     @Override
@@ -37,7 +37,7 @@ public class HelloController implements ApplicationContextAware {
 
     @GetMapping("/")
     public String index() {
-        return "Greetings from Spring Boot! " + myProps.getMyVal() /*+ " / " + ((MyBean) myBean).myVal()*/;
+        return "Greetings from Spring Boot! " + myProps.isPostProcessed() /*+ " / " + ((MyBean) myBean).myVal()*/;
     }
 
     @GetMapping("/bean")

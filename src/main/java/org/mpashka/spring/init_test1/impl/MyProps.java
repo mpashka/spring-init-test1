@@ -1,16 +1,27 @@
 package org.mpashka.spring.init_test1.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@ConfigurationProperties(prefix = "my.props")
+@Component
 public class MyProps {
-    private String myVal;
+    private static final Logger log = LoggerFactory.getLogger(MyProps.class);
 
-    public String getMyVal() {
-        return myVal;
+    private boolean postProcessed;
+
+    public MyProps() {
+        log.info("My Props Create: {}", this);
     }
 
-    public void setMyVal(String myVal) {
-        this.myVal = myVal;
+    public boolean isPostProcessed() {
+        return postProcessed;
+    }
+
+    public void setPostProcessed(boolean postProcessed) {
+        this.postProcessed = postProcessed;
     }
 }
