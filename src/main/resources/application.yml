@@ -1,7 +1,5 @@
-my.config: #{@'my.props-org.mpashka.spring.init_test1.impl.MyProps'}
-my.props:
-  my-val: Config-Value-Dot
-#  myVal: Config-Value-Camel
 logging.level:
   root: INFO
   org.mpashka: TRACE
+spring:
+  aop.proxy-target-class: false

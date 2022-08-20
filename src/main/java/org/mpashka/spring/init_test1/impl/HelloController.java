@@ -20,14 +20,6 @@ public class HelloController implements ApplicationContextAware {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private MyProps myProps;
-
-//    @Autowired
-//    @Qualifier("&myBeanFactory")
-    private MyBeanFactory myBeanFactory;
-
-//    @Autowired
-//    @Qualifier("myBeanFactory")
     private MyBean myBean;
 
     @Override
@@ -37,12 +29,7 @@ public class HelloController implements ApplicationContextAware {
 
     @GetMapping("/")
     public String index() {
-        return "Greetings from Spring Boot! " + myProps.getMyVal() /*+ " / " + ((MyBean) myBean).myVal()*/;
-    }
-
-    @GetMapping("/bean")
-    public String beans() {
-        return myBean + " / " + myBeanFactory;
+        return "Greetings from Spring Boot!";
     }
 
     @GetMapping("/init-jdbc")
@@ -51,6 +38,16 @@ public class HelloController implements ApplicationContextAware {
         jdbcTemplate.execute("CREATE TABLE customers(" +
                 "id SERIAL, first_name VARCHAR(255), last_name VARCHAR(255))");
         return "Greetings from Spring Boot!";
+    }
+
+    @GetMapping("/checkTransaction")
+    public String checkTransaction() {
+        return myBean.checkTransaction();
+    }
+
+    @GetMapping("/checkTransaction0")
+    public String checkTransaction0() {
+        return myBean.checkTransaction0();
     }
 
 }

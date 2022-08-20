@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(MyProps.class)
 public class MyConfig {
 
@@ -20,4 +20,8 @@ public class MyConfig {
         return new MyBeanFactory2();
     }
 
+    @Bean
+    public MyBean myBean(MyProps myProps) {
+        return new MyBean(myProps);
+    }
 }

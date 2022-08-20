@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("classpath:my-context.xml")
+//@ImportResource("classpath:my-context.xml")
 public class SpringInitTest1Application {
 
 	public static void main(String[] args) {
