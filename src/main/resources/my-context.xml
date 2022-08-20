@@ -14,14 +14,14 @@
             BeanFactoryPostProcessor.
             In our case this is DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor
             -->
-            <property name="myBeanProcessedChecker" value="#{@myBeanProcessedChecker}"/>
+            <property name="myBeanProcessedChecker" ref="myBeanProcessedChecker"/>
         </bean>
     </beans>
 
     <beans profile="expected-init">
         <bean id="myBeanFactory" class="org.mpashka.spring.init_test1.impl.MyBeanFactory">
             <constructor-arg name="myBeanFactoryNull" value="false"/>
-            <property name="myBeanProcessedChecker" value="#{@myBeanProcessedChecker}"/>
+            <property name="myBeanProcessedChecker" ref="myBeanProcessedChecker"/>
         </bean>
     </beans>
 </beans>
